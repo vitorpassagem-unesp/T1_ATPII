@@ -42,15 +42,15 @@ Exercicio novo_input (Exercicio ex){
 }
 
 void novo_exercicio (){
-    FILE *arq = fopen("exercicios.txt", "ab");
-    Exercicio ex = {"", "", 0, "", ""};
+    FILE *arq = fopen("exercicios.txt", "ab"); //abre ou cria se nao existir, arquivo binario no formato append
+    Exercicio ex = {"", "", 0, "", ""}; //inicia o vetor nulo
     if (arq==0)
         printf("Erro na abertura de arquivo");
     char op;
     do{
         fflush(stdin);
         ex = novo_input(ex);
-        fwrite(&ex, sizeof(Exercicio), 1, arq);
+        fwrite(&ex, sizeof(Exercicio), 1, arq); escreve no arquivo binario
         printf("Deseja inserir outro exercicio (s/n)? ");
         scanf("%c", &op);
         getchar();
@@ -62,13 +62,13 @@ void imprimir_todos(){
     //printf("De qual arquivo deseja ler os exercicios? ");
     //char nome_arq[32];
     //scanf("%s", nome_arq);
-    FILE *arq = fopen("exercicios.txt","rb");
+    FILE *arq = fopen("exercicios.txt","rb"); //abre arquivo para ler binario (rb)
     Exercicio ex[64] = {"","",0,"",""};
     int i=0, j;
     if (arq == NULL)
         printf ("O arquivo não foi aberto");
     else{
-        fread(&ex, sizeof(Exercicio), 64, arq);
+        fread(&ex, sizeof(Exercicio), 64, arq); //lê arquivo e salva no vetor ex
         do{
             i++;
         } while (ex[i].dificuldade!=0); //conta quantos exercicios tem no arquivo
@@ -78,7 +78,7 @@ void imprimir_todos(){
             printf("Dificuldade: %d\n", ex[j].dificuldade);
             printf("Exercicio VERDADEIRO: %s\n", ex[j].sentenca_v);
             printf("Exercicio FALSO: %s\n\n", ex[j].sentenca_f);
-        }
+        } //imprime todos os exercicios
     }
 }
 
@@ -90,8 +90,8 @@ int gerar_prova(){
         return 0;
     }
     int quant;
-    quant = rand() % 8;
-    while (quant < 3)
+    quant = rand() % 8; //pega o inteiro gigante q sai do sorteio e usa o resto da divisão por 8
+    while (quant < 3) //enquanto sortear um numero menor q 3, refaz o sorteio
         quant = rand() % 8;
     Exercicio ex[64];
     fread (&ex, sizeof (Exercicio), 64, arq);
@@ -118,7 +118,7 @@ int gerar_prova(){
     for (i = 0; i < quant; i++){  //loop vai de questao em questao e definindo dados da questao de prova e gabarito
         v_f = rand() % 1;
         if (v_f == 1){
-            strcpy (questao[i].sentenca, prova[i].sentenca_v);
+            strcpy (questao[i].sentenca, prova[i].sentenca_v); //copia a string a para a string b
             gabarito[i].resposta = 'V';
         }
         else{
@@ -175,8 +175,6 @@ int main(){
         break;
     case 3:
         gerar_prova();
-        break;
-    case 4:
         break;
     default:
         break;
