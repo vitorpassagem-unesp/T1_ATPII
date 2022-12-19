@@ -1,0 +1,383 @@
+primario 1
+secundario 1
+3
+verdadeiro 1
+falso 1
+
+primario 2
+secundario 2
+3
+verdadeiro 2
+falso 2
+
+primario 3
+secundario 3
+3
+verdadeiro 3
+falso 3
+
+primario 4
+secundario 4
+1
+verdadeiro 4
+falso 4
+
+primario 5
+secundario 5
+1
+verdadeiro 5
+falso 5
+
+primario 6
+secundario 6
+3
+verdadeiro 6
+falso 6
+
+primario 7
+secundario 7
+2
+verdadeiro 7
+falso 7
+
+primario 8
+secundario 8
+1
+verdadeiro 8
+falso 8
+
+primario 9
+secundario 9
+3
+verdadeiro 9
+falso 9
+
+primario 10
+secundario 10
+1
+verdadeiro 10
+falso 10
+
+primario 11
+secundario 11
+3
+verdadeiro 11
+falso 11
+
+primario 12
+secundario 12
+3
+verdadeiro 12
+falso 12
+
+primario 13
+secundario 13
+1
+verdadeiro 13
+falso 13
+
+primario 14
+secundario 14
+3
+verdadeiro 14
+falso 14
+
+primario 15
+secundario 15
+1
+verdadeiro 15
+falso 15
+
+primario 16
+secundario 16
+3
+verdadeiro 16
+falso 16
+
+primario 17
+secundario 17
+3
+verdadeiro 17
+falso 17
+
+primario 18
+secundario 18
+2
+verdadeiro 18
+falso 18
+
+primario 19
+secundario 19
+1
+verdadeiro 19
+falso 19
+
+primario 20
+secundario 20
+3
+verdadeiro 20
+falso 20
+
+primario 21
+secundario 21
+3
+verdadeiro 21
+falso 21
+
+primario 22
+secundario 22
+3
+verdadeiro 22
+falso 22
+
+primario 23
+secundario 23
+3
+verdadeiro 23
+falso 23
+
+primario 24
+secundario 24
+2
+verdadeiro 24
+falso 24
+
+primario 25
+secundario 25
+1
+verdadeiro 25
+falso 25
+
+primario 26
+secundario 26
+1
+verdadeiro 26
+falso 26
+
+primario 27
+secundario 27
+1
+verdadeiro 27
+falso 27
+
+primario 28
+secundario 28
+1
+verdadeiro 28
+falso 28
+
+primario 29
+secundario 29
+3
+verdadeiro 29
+falso 29
+
+primario 30
+secundario 30
+2
+verdadeiro 30
+falso 30
+
+primario 31
+secundario 31
+1
+verdadeiro 31
+falso 31
+
+primario 32
+secundario 32
+3
+verdadeiro 32
+falso 32
+
+primario 33
+secundario 33
+1
+verdadeiro 33
+falso 33
+
+primario 34
+secundario 34
+3
+verdadeiro 34
+falso 34
+
+primario 35
+secundario 35
+3
+verdadeiro 35
+falso 35
+
+primario 36
+secundario 36
+2
+verdadeiro 36
+falso 36
+
+primario 37
+secundario 37
+1
+verdadeiro 37
+falso 37
+
+primario 38
+secundario 38
+3
+verdadeiro 38
+falso 38
+
+primario 39
+secundario 39
+2
+verdadeiro 39
+falso 39
+
+primario 40
+secundario 40
+2
+verdadeiro 40
+falso 40
+
+primario 41
+secundario 41
+1
+verdadeiro 41
+falso 41
+
+primario 42
+secundario 42
+3
+verdadeiro 42
+falso 42
+
+primario 43
+secundario 43
+1
+verdadeiro 43
+falso 43
+
+primario 44
+secundario 44
+1
+verdadeiro 44
+falso 44
+
+primario 45
+secundario 45
+3
+verdadeiro 45
+falso 45
+
+primario 46
+secundario 46
+2
+verdadeiro 46
+falso 46
+
+primario 47
+secundario 47
+2
+verdadeiro 47
+falso 47
+
+primario 48
+secundario 48
+2
+verdadeiro 48
+falso 48
+
+primario 49
+secundario 49
+3
+verdadeiro 49
+falso 49
+
+primario 50
+secundario 50
+1
+verdadeiro 50
+falso 50
+
+primario 51
+secundario 51
+1
+verdadeiro 51
+falso 51
+
+primario 52
+secundario 52
+2
+verdadeiro 52
+falso 52
+
+primario 53
+secundario 53
+2
+verdadeiro 53
+falso 53
+
+primario 54
+secundario 54
+3
+verdadeiro 54
+falso 54
+
+primario 55
+secundario 55
+2
+verdadeiro 55
+falso 55
+
+primario 56
+secundario 56
+2
+verdadeiro 56
+falso 56
+
+primario 57
+secundario 57
+2
+verdadeiro 57
+falso 57
+
+primario 58
+secundario 58
+1
+verdadeiro 58
+falso 58
+
+primario 59
+secundario 59
+3
+verdadeiro 59
+falso 59
+
+primario 60
+secundario 60
+1
+verdadeiro 60
+falso 60
+
+primario 61
+secundario 61
+2
+verdadeiro 61
+falso 61
+
+primario 62
+secundario 62
+1
+verdadeiro 62
+falso 62
+
+primario 63
+secundario 63
+2
+verdadeiro 63
+falso 63
+
+primario 64
+secundario 64
+3
+verdadeiro 64
+falso 64
