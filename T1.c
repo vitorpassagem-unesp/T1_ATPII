@@ -1,3 +1,4 @@
+//Vitor A. C. Z. Passagem - C. Computação - Integral
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -37,13 +38,13 @@ void converter_exercicio(){
     }
     Exercicio ex[64];
     int i = 0;
-        printf("%d\n", i);
         do{
             fgets (ex[i].assunto_p, 64, arq);
             fgets (ex[i].assunto_s, 64, arq);
-            fscanf (arq, "%d", &ex[i].dificuldade);
+            fscanf (arq, "%d\n", &ex[i].dificuldade);
             fgets (ex[i].sentenca_v, 256, arq);
             fgets (ex[i].sentenca_f, 256, arq);
+            fscanf (arq, "\n");
             i++;
             printf("%d\n", i);
         }while (feof (arq) == 0);
@@ -103,13 +104,14 @@ void imprimir_todos(){
         fread(&ex, sizeof(Exercicio), 64, arq); //lê arquivo e salva no vetor ex
         do{
             i++;
-        } while (ex[i].dificuldade!=0); //conta quantos exercicios tem no arquivo
+        } while (ex[i].dificuldade<4 && ex[i].dificuldade != 0); //conta quantos exercicios tem no arquivo
         for(j=0; j<i; j++){
-            printf("\nAssunto primario: %s\n", ex[j].assunto_p);
-            printf("Assunto secundario: %s\n", ex[j].assunto_s);
+            printf("\n%d\n", j+1);
+            printf("Assunto primario: %s", ex[j].assunto_p);
+            printf("Assunto secundario: %s", ex[j].assunto_s);
             printf("Dificuldade: %d\n", ex[j].dificuldade);
-            printf("Exercicio VERDADEIRO: %s\n", ex[j].sentenca_v);
-            printf("Exercicio FALSO: %s\n\n", ex[j].sentenca_f);
+            printf("Exercicio VERDADEIRO: %s", ex[j].sentenca_v);
+            printf("Exercicio FALSO: %s\n", ex[j].sentenca_f);
         } //imprime todos os exercicios
     }
 }
@@ -122,17 +124,14 @@ int gerar_prova(){
         return 0;
     }
     int quant;
-    quant = rand()%8;
-    printf("\nrand n1: %d\n", quant); //pega o inteiro gigante q sai do sorteio e usa o resto da divisão por 8
+    quant = rand()%9; //pega o inteiro gigante q sai do sorteio e usa o resto da divisão por 9
     if (quant < 3){
         while (quant < 3) //enquanto sortear um numero menor q 3, refaz o sorteio
-            quant = rand() % 8;
-            printf("\nrand resort: %d\n", quant);
+            quant = rand() % 9;
     }
     Exercicio ex[64];
     fread (&ex, sizeof (Exercicio), 64, arq);
     int id[quant], i, j;
-    printf("Quant: %d\n", quant);
     for(i=0; i<quant; i++){ //faz o sorteio do íncice dos exercicios
         id[i] = rand() % 64;
         if (i>0){ //checa se sorteou um indice repetido, e caso tenha, sorteia de novo
@@ -143,7 +142,6 @@ int gerar_prova(){
                 }
             }
         }
-        printf("id numero %d: %d\n", i, id[i]);
     }
 
     Exercicio prova[quant]; //atribui valores do banco de exercicios ao vetor prova
@@ -153,11 +151,23 @@ int gerar_prova(){
 
     ExProva questao[quant]; //array com questões que serão impressas na prova
     Gabarito gabarito[quant]; //gabarito da prova
-    int v_f;
+    int v_f[quant];
+    int teste = 1;
+    do{
+        for (i = 0; i < quant; i++){
+            v_f[i] = rand() % 2;
+        }
+        for (i = 0; i < quant; i++){
+            if (v_f[i] ==  v_f[i+1])
+                teste = 1;
+            else
+                teste = 0;
+                break;
+        }
+    }while (teste == 1); //testa se todas são verdadeiras ou falsas (iguais)
 
     for (i = 0; i < quant; i++){  //loop vai de questao em questao e definindo dados da questao de prova e gabarito
-        v_f = rand() % 1;
-        if (v_f == 1){
+        if (v_f[i] == 1){
             strcpy (questao[i].sentenca, prova[i].sentenca_v); //copia a string a para a string b
             gabarito[i].resposta = 'V';
         }
@@ -183,14 +193,15 @@ int gerar_prova(){
     arq = fopen("gabarito.txt", "w");
     for (i = 0; i < quant; i++) { //grava respostas no arquivo txt do gabarito
         fprintf(arq, "%d\n", gabarito[i].n_questao);
-        fprintf(arq, "\t%s\n", gabarito[i].assunto_p);
-        fprintf(arq, "\t%s\n", gabarito[i].assunto_s);
+        fprintf(arq, "\t%s", gabarito[i].assunto_p);
+        fprintf(arq, "\t%s", gabarito[i].assunto_s);
         fprintf(arq, "%c\n\n", gabarito[i].resposta);
     }
     fclose(arq);
     arq = NULL;
     return 1;
 }
+
 
 int main(){
     Exercicio ex;
@@ -221,6 +232,7 @@ int main(){
         converter_exercicio();
         break;
     default:
+        printf("Opcao invalida\n\n");
         break;
     }
     }while(opcao != 0);
