@@ -25,6 +25,38 @@ typedef struct gabarito {
     int n_questao;
 }Gabarito;
 
+void converter_exercicio(){
+    printf("Qual o nome do arquivo deseja converter (maximo de 64 ex por arquivo)? ");
+    char arquivotxt[32];
+    scanf("%s", arquivotxt);
+    getchar();
+    FILE *arq = fopen(arquivotxt, "r");
+    if (arq == 0) {
+        printf("\nNão foi possível abrir arquivo\n\n");
+        return;
+    }
+    Exercicio ex[64];
+    int i = 0;
+        printf("%d\n", i);
+        do{
+            fgets (ex[i].assunto_p, 64, arq);
+            fgets (ex[i].assunto_s, 64, arq);
+            fscanf (arq, "%d", &ex[i].dificuldade);
+            fgets (ex[i].sentenca_v, 256, arq);
+            fgets (ex[i].sentenca_f, 256, arq);
+            i++;
+            printf("%d\n", i);
+        }while (feof (arq) == 0);
+        fclose (arq);
+        arq = NULL;
+        printf ("Qual o nome do arquivo binario a ser criado? ");
+        char arquivobin[32];
+        scanf("%s", arquivobin);
+        arq = fopen (arquivobin, "wb");
+        fwrite (&ex, sizeof(Exercicio), 64, arq);
+        fclose (arq);
+}
+
 Exercicio novo_input (Exercicio ex){
     printf ("Qual o assunto primário do exercicio? ");
     gets(ex.assunto_p);
@@ -50,7 +82,7 @@ void novo_exercicio (){
     do{
         fflush(stdin);
         ex = novo_input(ex);
-        fwrite(&ex, sizeof(Exercicio), 1, arq); escreve no arquivo binario
+        fwrite(&ex, sizeof(Exercicio), 1, arq); //escreve no arquivo binario
         printf("Deseja inserir outro exercicio (s/n)? ");
         scanf("%c", &op);
         getchar();
@@ -84,26 +116,34 @@ void imprimir_todos(){
 
 int gerar_prova(){
     srand(time(NULL));
-    FILE *arq = fopen("exercicio.txt", "rb");
+    FILE *arq = fopen("exercicios.txt", "rb");
     if (arq == NULL){
         printf("Falha ao abrir arquivo com os exercicios.\n");
         return 0;
     }
     int quant;
-    quant = rand() % 8; //pega o inteiro gigante q sai do sorteio e usa o resto da divisão por 8
-    while (quant < 3) //enquanto sortear um numero menor q 3, refaz o sorteio
-        quant = rand() % 8;
+    quant = rand()%8;
+    printf("\nrand n1: %d\n", quant); //pega o inteiro gigante q sai do sorteio e usa o resto da divisão por 8
+    if (quant < 3){
+        while (quant < 3) //enquanto sortear um numero menor q 3, refaz o sorteio
+            quant = rand() % 8;
+            printf("\nrand resort: %d\n", quant);
+    }
     Exercicio ex[64];
     fread (&ex, sizeof (Exercicio), 64, arq);
     int id[quant], i, j;
+    printf("Quant: %d\n", quant);
     for(i=0; i<quant; i++){ //faz o sorteio do íncice dos exercicios
         id[i] = rand() % 64;
         if (i>0){ //checa se sorteou um indice repetido, e caso tenha, sorteia de novo
-            for(j=i; j>=0; j--){
-                while (id[i] == id[j])
-                    id[i] = rand() % 64;
+            for(j=i-1; j>=0; j--){
+                if (id[i]==id[j]){
+                    while (id[i] == id[j])
+                        id[i] = rand() % 64;
+                }
             }
         }
+        printf("id numero %d: %d\n", i, id[i]);
     }
 
     Exercicio prova[quant]; //atribui valores do banco de exercicios ao vetor prova
@@ -145,7 +185,7 @@ int gerar_prova(){
         fprintf(arq, "%d\n", gabarito[i].n_questao);
         fprintf(arq, "\t%s\n", gabarito[i].assunto_p);
         fprintf(arq, "\t%s\n", gabarito[i].assunto_s);
-        fprintf(arq, "%d\n\n", gabarito[i].resposta);
+        fprintf(arq, "%c\n\n", gabarito[i].resposta);
     }
     fclose(arq);
     arq = NULL;
@@ -159,13 +199,14 @@ int main(){
     printf("\nDigite 0 para sair\n");
     printf("Digite 1 para inserir novo exercicio\n");
     printf("Digite 2 para imprimir lista de exercicios\n");
-    printf("Digite 3 para gerar prova e gabarito\n\n");
+    printf("Digite 3 para gerar prova e gabarito\n");
+    printf("Digite 4 para transformar arquivo de texto em binario\n\n");
     scanf("%d", &opcao);
     getchar();
 
     switch (opcao) {
     case 0:
-        printf("\nAdeus\n\n");
+        printf("\nAdeus...\n\n");
         break;
     case 1:
         novo_exercicio();
@@ -175,6 +216,9 @@ int main(){
         break;
     case 3:
         gerar_prova();
+        break;
+    case 4:
+        converter_exercicio();
         break;
     default:
         break;
